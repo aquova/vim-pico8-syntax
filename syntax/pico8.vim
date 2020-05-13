@@ -4,18 +4,9 @@
 " For version 5.x: Clear all syntax items
 " For version 6.x: Quit when a syntax file was already loaded
 if version < 600
-  syntax clear
+    syntax clear
 elseif exists("b:current_syntax")
-  finish
-endif
-
-if !exists("lua_version")
-  " Default is lua 5.1
-  let lua_version = 5
-  let lua_subversion = 1
-elseif !exists("lua_subversion")
-  " lua_version exists, but lua_subversion doesn't. So, set it to 0
-  let lua_subversion = 0
+    finish
 endif
 
 syn case match
@@ -24,19 +15,10 @@ syn case match
 syn sync minlines=100
 
 " Comments
-syn keyword luaTodo             contained TODO FIXME XXX
-syn match   luaComment          "--.*$" contains=luaTodo,@Spell
-syn match   luaComment          "//.*$" contains=luaTodo,@Spell
-if lua_version == 5 && lua_subversion == 0
-  syn region  luaComment        matchgroup=luaComment start="--\[\[" end="\]\]" contains=luaTodo,luaInnerComment,@Spell
-  syn region  luaInnerComment   contained transparent start="\[\[" end="\]\]"
-elseif lua_version > 5 || (lua_version == 5 && lua_subversion >= 1)
-  " Comments in Lua 5.1: --[[ ... ]], [=[ ... ]=], [===[ ... ]===], etc.
-  syn region  luaComment        matchgroup=luaComment start="--\[\z(=*\)\[" end="\]\z1\]" contains=luaTodo,@Spell
-endif
-
-" First line may start with #!
-syn match luaComment "\%^#!.*"
+syn keyword luaTodo    contained TODO FIXME XXX
+syn match   luaComment "--.*$" contains=luaTodo,@Spell
+syn match   luaComment "//.*$" contains=luaTodo,@Spell
+syn region  luaComment matchgroup=luaComment start="--\[\[" end="\]\]" contains=luaTodo,luaInnerComment,@Spell
 
 " catch errors caused by wrong parenthesis and wrong curly brackets or
 " keywords placed outside their respective blocks
@@ -79,22 +61,13 @@ syn keyword luaRepeat contained in
 
 " other keywords
 syn keyword luaStatement return local break
-syn keyword luaOperator  and or not
-syn keyword luaConstant  nil
-if lua_version > 4
-  syn keyword luaConstant true false
-endif
+syn keyword luaOperator and or not
+syn keyword luaConstant nil
+syn keyword luaConstant true false
 
 " Strings
-if lua_version < 5
-  syn match  luaSpecial contained "\\[\\abfnrtv\'\"]\|\\\d\{,3}"
-elseif lua_version == 5 && lua_subversion == 0
-  syn match  luaSpecial contained "\\[\\abfnrtv\'\"[\]]\|\\\d\{,3}"
-  syn region luaString2 matchgroup=luaString start=+\[\[+ end=+\]\]+ contains=luaString2,@Spell
-elseif lua_version > 5 || (lua_version == 5 && lua_subversion >= 1)
-  syn match  luaSpecial contained "\\[\\abfnrtv\'\"]\|\\\d\{,3}"
-  syn region luaString2 matchgroup=luaString start="\[\z(=*\)\[" end="\]\z1\]" contains=@Spell
-endif
+syn match  luaSpecial contained "\\[\\abfnrtv\'\"]\|\\\d\{,3}"
+syn region luaString2 matchgroup=luaString start="\[\z(=*\)\[" end="\]\z1\]" contains=@Spell
 syn region luaString  start=+'+ end=+'+ skip=+\\\\\|\\'+ contains=luaSpecial,@Spell
 syn region luaString  start=+"+ end=+"+ skip=+\\\\\|\\"+ contains=luaSpecial,@Spell
 
@@ -108,9 +81,7 @@ syn match luaFloat  "\.\d\+\%(e[-+]\=\d\+\)\=\>"
 syn match luaFloat  "\<\d\+e[-+]\=\d\+\>"
 
 " hex numbers
-if lua_version > 5 || (lua_version == 5 && lua_subversion >= 1)
-  syn match luaNumber "\<0x\x\+\>"
-endif
+syn match luaNumber "\<0x\x\+\>"
 
 " tables
 syn region  luaTableBlock transparent matchgroup=luaTable start="{" end="}" contains=ALLBUT,luaTodo,luaSpecial,luaCond,luaCondElseif,luaCondEnd,luaCondStart,luaBlock,luaRepeatBlock,luaRepeat,luaStatement
@@ -135,38 +106,30 @@ syn keyword luaFunc rawset rawget rawequal rawlen
 syn keyword luaFunc cocreate coresume costatus yield assert
 syn keyword luaFunc pack unpack
 
-
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
 " For version 5.8 and later: only when an item doesn't have highlighting yet
 if version >= 508 || !exists("did_lua_syntax_inits")
-  if version < 508
-    let did_lua_syntax_inits = 1
-    command -nargs=+ HiLink hi link <args>
-  else
     command -nargs=+ HiLink hi def link <args>
-  endif
 
-  HiLink luaStatement		Statement
-  HiLink luaRepeat		Repeat
-  HiLink luaString		String
-  HiLink luaString2		String
-  HiLink luaNumber		Number
-  HiLink luaFloat		Float
-  HiLink luaOperator		Operator
-  HiLink luaConstant		Constant
-  HiLink luaCond		Conditional
-  HiLink luaFunction		Function
-  HiLink luaComment		Comment
-  HiLink luaTodo		Todo
-  HiLink luaTable		Structure
-  HiLink luaError		Error
-  HiLink luaSpecial		SpecialChar
-  HiLink luaFunc		Identifier
+    HiLink luaStatement	Statement
+    HiLink luaRepeat		Repeat
+    HiLink luaString		String
+    HiLink luaString2		String
+    HiLink luaNumber		Number
+    HiLink luaFloat		Float
+    HiLink luaOperator	Operator
+    HiLink luaConstant	Constant
+    HiLink luaCond		Conditional
+    HiLink luaFunction	Function
+    HiLink luaComment		Comment
+    HiLink luaTodo		Todo
+    HiLink luaTable		Structure
+    HiLink luaError		Error
+    HiLink luaSpecial		SpecialChar
+    HiLink luaFunc		Identifier
 
-  delcommand HiLink
+    delcommand HiLink
 endif
 
 let b:current_syntax = "lua"
-
-" vim: et ts=8

@@ -26,6 +26,7 @@ syn sync minlines=100
 " Comments
 syn keyword luaTodo             contained TODO FIXME XXX
 syn match   luaComment          "--.*$" contains=luaTodo,@Spell
+syn match   luaComment          "//.*$" contains=luaTodo,@Spell
 if lua_version == 5 && lua_subversion == 0
   syn region  luaComment        matchgroup=luaComment start="--\[\[" end="\]\]" contains=luaTodo,luaInnerComment,@Spell
   syn region  luaInnerComment   contained transparent start="\[\[" end="\]\]"
@@ -114,23 +115,25 @@ endif
 " tables
 syn region  luaTableBlock transparent matchgroup=luaTable start="{" end="}" contains=ALLBUT,luaTodo,luaSpecial,luaCond,luaCondElseif,luaCondEnd,luaCondStart,luaBlock,luaRepeatBlock,luaRepeat,luaStatement
 
-syn keyword luaFunc clip pget pset sget
-syn keyword luaFunc sset fget fset print
-syn keyword luaFunc cursor color cls camera
-syn keyword luaFunc circ circfill line rect
-syn keyword luaFunc rectfill pal palt spr
-syn keyword luaFunc sspr add del foreach
+syn keyword luaFunc flip printh time stat extcmd
+syn keyword luaFunc clip pget pset sget sset fget fset
+syn keyword luaFunc print cursor color cls camera
+syn keyword luaFunc circ circfill line rect rectfill
+syn keyword luaFunc pal palt spr sspr fillp
+syn keyword luaFunc add del all foreach pairs
 syn keyword luaFunc btn btnp sfx music
-syn keyword luaFunc mget mset map peek
-syn keyword luaFunc poke memcpy reload cstore
-syn keyword luaFunc memset max min mid
-syn keyword luaFunc flr cos sin atan2
+syn keyword luaFunc mget mset map tline
+syn keyword luaFunc peek poke peek2 poke2 peek4 poke4
+syn keyword luaFunc memcpy reload cstore memset
+syn keyword luaFunc max min mid flr ceil cos sin atan2
 syn keyword luaFunc sqrt abs rnd srand
-syn keyword luaFunc band bor bxor bnot
-syn keyword luaFunc shl shr sub all pairs
-syn keyword luaFunc assert type setmetatable
-syn keyword luaFunc cocreate coresume costatus yield
-syn keyword luaFunc sgn stat cartdata dget dset
+syn keyword luaFunc band bor bxor bnot shl shr lshr rotl rotr
+syn keyword luaFunc menuitem sub tostr tonum chr ord type
+syn keyword luaFunc cartdata dset dget serial stat
+syn keyword luaFunc setmetatable getmetatable
+syn keyword luaFunc rawset rawget rawequal rawlen
+syn keyword luaFunc cocreate coresume costatus yield assert
+syn keyword luaFunc pack unpack
 
 
 " Define the default highlighting.

@@ -60,7 +60,7 @@ syn region luaRepeatBlock transparent matchgroup=luaRepeat start="\<for\>" end="
 syn keyword luaRepeat contained in
 
 " other keywords
-syn keyword luaStatement return local break
+syn keyword luaStatement return local break goto
 syn keyword luaOperator and or not
 syn keyword luaConstant nil
 syn keyword luaConstant true false
@@ -114,20 +114,20 @@ if version >= 508 || !exists("did_lua_syntax_inits")
     command -nargs=+ HiLink hi def link <args>
 
     HiLink luaStatement	Statement
-    HiLink luaRepeat		Repeat
-    HiLink luaString		String
-    HiLink luaString2		String
-    HiLink luaNumber		Number
+    HiLink luaRepeat	Repeat
+    HiLink luaString	String
+    HiLink luaString2	String
+    HiLink luaNumber	Number
     HiLink luaFloat		Float
     HiLink luaOperator	Operator
     HiLink luaConstant	Constant
     HiLink luaCond		Conditional
     HiLink luaFunction	Function
-    HiLink luaComment		Comment
+    HiLink luaComment	Comment
     HiLink luaTodo		Todo
     HiLink luaTable		Structure
     HiLink luaError		Error
-    HiLink luaSpecial		SpecialChar
+    HiLink luaSpecial	SpecialChar
     HiLink luaFunc		Identifier
 
     delcommand HiLink

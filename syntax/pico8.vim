@@ -120,7 +120,7 @@ syn keyword luaFunc clip pget pset sget sset fget fset
 syn keyword luaFunc print cursor color cls camera
 syn keyword luaFunc circ circfill line rect rectfill
 syn keyword luaFunc pal palt spr sspr fillp
-syn keyword luaFunc add del all foreach pairs
+syn keyword luaFunc add del all foreach pairs ipairs
 syn keyword luaFunc btn btnp sfx music
 syn keyword luaFunc mget mset map tline
 syn keyword luaFunc peek poke peek2 poke2 peek4 poke4

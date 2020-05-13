@@ -80,8 +80,9 @@ syn match luaFloat  "\.\d\+\%(e[-+]\=\d\+\)\=\>"
 " floating point number, without dot, with exponent
 syn match luaFloat  "\<\d\+e[-+]\=\d\+\>"
 
-" hex numbers
+" hex and binary numbers
 syn match luaNumber "\<0x\x\+\>"
+syn match luaNumber "\<0b\x\+\>"
 
 " tables
 syn region  luaTableBlock transparent matchgroup=luaTable start="{" end="}" contains=ALLBUT,luaTodo,luaSpecial,luaCond,luaCondElseif,luaCondEnd,luaCondStart,luaBlock,luaRepeatBlock,luaRepeat,luaStatement

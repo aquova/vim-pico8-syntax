@@ -2,7 +2,7 @@
 
 Vim syntax file for [Pico-8](https://www.lexaloffle.com/pico-8.php).
 
-Currently up to date with Pico-8 v0.2.0i.
+Currently up to date with Pico-8 v0.2.1b.
 
 ## Installation
 

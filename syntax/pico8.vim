@@ -106,6 +106,7 @@ syn keyword luaFunc setmetatable getmetatable
 syn keyword luaFunc rawset rawget rawequal rawlen
 syn keyword luaFunc cocreate coresume costatus yield assert
 syn keyword luaFunc pack unpack
+syn keyword luaFunc oval ovalfill split deli
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
